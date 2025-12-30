@@ -17,4 +17,15 @@ from config import LOG_SIZES
 
 logs_dict = { }
 
+image_log= pygame.image.load('images/log.png')
+    
+
+image_short=pygame.transform.scale(image_log, LOG_SIZES['short'])
+image_medium=pygame.transform.scale(image_log, LOG_SIZES['medium'])
+image_long=pygame.transform.scale(image_log, LOG_SIZES['long'])
+
+logs_dict['short']=(image_short)
+logs_dict['medium']=(image_medium)
+logs_dict['long']=(image_long)
+
 # ===============================================================

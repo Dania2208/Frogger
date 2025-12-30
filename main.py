@@ -42,7 +42,7 @@ def main():
         # Vérifier si on est dans une voie de log (rivière)
         in_log_lane = any(
             lane["type"] == "river" and
-            frog_dict["y"] + frog_dict["size"] > lane["y"] and  # bas grenouille > haut voie
+            frog_dict["y"] + frog_dict["size"] >lane["y"] and  # bas grenouille > haut voie
             frog_dict["y"] < lane["y"] + LANE_HEIGHT    # haut grenouille < bas voie
             for lane in LANES
         )

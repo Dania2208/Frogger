@@ -22,12 +22,21 @@ def move_entities():
 # Les coordonnées "x" et "y" doivent rester entre les bornes de la fenêtre de jeu.
 
 def handle_input(event): 
+    if event.type == pygame.KEYDOWN:
+        if event.key  == pygame.K_LEFT:
+            frog_dict ['x'] -= frog_dict ["speed"]
+        if event.key==pygame.K_RIGHT:
+            frog_dict['x'] += frog_dict['speed']
+        if event.key == pygame. K_UP:
+            frog_dict['y']-= frog_dict['speed']
+        if event.key == pygame. K_DOWN:
+            frog_dict['y']+= frog_dict['speed']
+
+        frog_dict['x']= max(0, min(frog_dict['x'], SCREEN_WIDTH- FROG_SIZE))
+        frog_dict['y']= max(0, min (frog_dict['y'], SCREEN_HEIGHT-FROG_SIZE))
 
 
-
-
-
-    return
+        return
     
 # ===============================================================
 
@@ -50,13 +59,40 @@ def handle_input(event):
 # Voir le README.md pour des détails supplémentaires sur les fonctions pygame. 
 
 def check_collision():
-
-
-
-
-
+    frog_rect = pygame.Rect(
+                     frog_dict['x'],
+                     frog_dict['y'],
+                     frog_dict['size'],
+                     frog_dict['size']
+    )
+    for lane in LANES:
+        if lane['type'] == 'road':
+            for car in lane['entities']:
+                car_rect=pygame.Rect(
+                    car['x'],
+                    car['y'],
+                    car['width'],  
+                    car['height']
+            )
+                collision= pygame.Rect.colliderect(frog_rect, car_rect)
+                if collision:
+                    return collision
+                    
 
     return False
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # =================================================================
 
@@ -78,10 +114,31 @@ def check_collision():
 # - Si aucune bûche n'est en contact avec la grenouille, la variable frog["log_speed"] doit être remise à 0.
 
 def handle_logs():
+    frog_dict['on_log']=False
+    frog_dict['log_speed']=0
 
-
-
-
+    frog_rect=pygame.Rect(
+        frog_dict["x"], 
+        frog_dict["y"] ,  
+        FROG_SIZE,  
+        FROG_SIZE
+    )
+    for lane in LANES:
+        if lane['type']=='river':
+            
+        
+            for log in lane['entities']:
+                log_rect=pygame.Rect(log['x'],log['y'], log['width'],log['height'])
+                
+                collision= pygame.Rect.colliderect(frog_rect, log_rect)
+                if collision:
+                    frog_dict['on_log']=True
+                    frog_dict['log_speed']= lane['speed']
+                    return
+                if collision==False:
+                    frog_dict['on_log']=False
+                    frog_dict['log_speed']=0
+            
 
     return
 

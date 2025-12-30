@@ -15,7 +15,7 @@ background_img = pygame.image.load("images/background.png")
 background_img = pygame.transform.scale(background_img, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 
-# ======================== PARTIE 2.2 ========================
+# ======================== PARTIE 2.2 ========================r
 #
 # TODO : Complétez la fonction `add_road_lanes()`, qui permettra d'ajouter 4 voies de route avec des voitures aléatoires. 
 # 
@@ -29,13 +29,41 @@ background_img = pygame.transform.scale(background_img, (SCREEN_WIDTH, SCREEN_HE
 #   doit être appliqué selon la direction de la voie. 
 
 # - Ajoutez la voie complète à la structure qui gère l’ensemble des voies (lanes).
-
 def add_road_lanes():
+    for i in range(4):
+        y_lane= SCREEN_HEIGHT - (i+2)* LANE_HEIGHT + (LANE_HEIGHT-CARS_SIZE[1])//2
+        if i%2==0:
+            direction= 'right'
+        else:
+            direction='left'
 
+        speed=random.choice ([2,3,4])
+        if direction== 'left':
+            speed= -speed
 
+        cars= []
 
+        for j in range(3):
+            x_pos= j*250 + random.randint(0,100)
 
+            car={
+                "width": CARS_SIZE[0],
+                "height":CARS_SIZE[1],
+                "x": x_pos,
+                "y": y_lane,
+                "image": random.choice(cars_dict[direction])
+            }
+            cars.append(car)
 
+        LANES.append({
+        "type":'road',
+        "speed":speed,
+        "y":y_lane,
+        "entities":cars
+     
+
+    })
+     
     return
 
 
@@ -70,10 +98,39 @@ def add_grass_lane():
 # - Ajoutez la voie complète à la structure qui gère l’ensemble des voies (lanes). 
 
 def add_river_lanes():
-    
+    Log_height=LOG_SIZES['medium'][1] # height est la meme pour tous les types de buches
+    for i in range (4):
+        y_lane=SCREEN_HEIGHT-(i+7) *LANE_HEIGHT
+        if i%2==0:
+            direction='right'
+        else:
+            direction='left'
+        
+        speed=random.choice([2,3,4])
+        if direction=='left':
+            speed=-speed
+        logs=[]
+        spacing=250
+        for l in range(3): 
+            size_name= random.choice(['short','medium','long'])
+            log_image=logs_dict[size_name]
+            
 
+            log={
+                "width": LOG_SIZES[size_name][0],
+                "height": Log_height,
+                "x": l*spacing, 
+                "y": y_lane + (LANE_HEIGHT - Log_height)//2,
+                "image": log_image
+            }
+            logs.append(log)
 
-
+        LANES.append({
+            'type': 'river',
+            'speed': speed,
+            'y': y_lane,
+            'entities':logs
+        })
 
     return
 
