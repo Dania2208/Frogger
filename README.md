@@ -1,10 +1,10 @@
 <<<<<<< HEAD
 # Projet 1 - INF1007 Automne 2025
+## INTRODUCTION
+Voici mon premier projet que j'ai fait dans mon cours INF1700. Voici les étapes à suivre!
 
 ## Directives
-:alarm_clock: Date de remise : 19 octobre 2025 à minuit
 
-:mailbox_with_mail: À remettre sur Moodle (voir les directives en bas de la page)
 
 ## Introduction
 Dans ce projet, vous aurez comme tâche de compléter une version du jeu [Frogger](https://en.wikipedia.org/wiki/Frogger) 🐸. Ce jeu, créé en 1981, a comme objectif de guider une grenouille ("Frogger") à traverser des routes, sans se faire frapper par des voitures, puis une rivière, en sautant sur des bûches de bois. 
