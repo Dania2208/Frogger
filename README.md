@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Projet 1 - INF1007 Automne 2025
 
 ## Directives
@@ -380,3 +381,6 @@ Le barème de correction est le suivant :
 |                       |  Gestion des clés "on_log" et "log_speed" lorsqu'une collision est détectée entre la grenouille et une bûche        |    1    |   
 | **Total**                                 |                                                                           | **/20**    |
 
+=======
+# Frogger
+>>>>>>> 84abd9a69810c1da47bfc712884f2aa79db694a3
